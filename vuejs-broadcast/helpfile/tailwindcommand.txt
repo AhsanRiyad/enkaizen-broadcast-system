@@ -1,0 +1,4 @@
+'npx tailwindcss -i ./public/new/tailwind/tailwind.css -o ./public/new/dist/tailwind.css --minify -w'
+
+
+'npx tailwindcss -i ./tailwind.css -o ./src/styles/tailwind.css --minify -w'

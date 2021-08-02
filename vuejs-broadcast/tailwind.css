@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities {
+    @variants responsive {
+        .w-350p {
+            flex-basis: 350px;
+        }
+        .w-350px {
+            width: 350px;
+        }
+
+        .w-700p {
+            flex-basis: 700px;
+        }
+
+        .container-1200{
+            width: 1000px;
+            margin: 0 auto;
+        }
+
+        .videoWidthLargeScreen{
+            height: 600px;
+            width: 700px;
+        }
+
+        .videoWidthMobileScreen{
+            height: calc(100vh - 300px);
+            width: calc(100vw - 100px);
+        },
+        .enkaizenColor{
+            color: #2271B6;
+        }
+        .enkaizenBg{
+            background-color: #2271B6;
+        }
+
+    }
+
+    .max-width-800px {
+        max-width: 800px;
+    }
+}
