@@ -108,6 +108,7 @@ export default {
   data() {
     return {
       photos: [],
+      pusher: null,
       dialog: false,
       link: "",
       loading: false,
@@ -132,7 +133,6 @@ export default {
           data: { path: this.link },
         })
         .then((response) => {
-          console.log(response);
           this.text = response;
           this.$refs.form.reset();
           this.color = "success";
@@ -169,13 +169,11 @@ export default {
       });
   },
   created() {
-    console.log("pusher created");
-    let pusher = new Pusher("1590530dcf8b3b74448e", {
+    this.pusher = new Pusher("1590530dcf8b3b74448e", {
       cluster: "ap2",
     });
-    pusher.subscribe("testChannel");
-    pusher.bind("PhotoDownload", (data) => {
-      if(data.userId == this.userId ){
+    this.pusher.subscribe("DownloadPhoto"+this.userId);
+    this.pusher.bind("PhotoDownload", (data) => {
         if (data.link == "failed") {
         this.color = "error";
         this.text = "There is some problem in the link";
@@ -186,10 +184,11 @@ export default {
         this.text = "Gallery has been updated";
         this.snackbar = true;
       }
-      }
-      
     });
   },
+  destroyed(){
+      this.pusher.unsubscribe("DownloadPhoto"+this.userId);
+  }
 };
 </script>
 

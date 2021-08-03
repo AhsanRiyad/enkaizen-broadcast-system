@@ -43,6 +43,6 @@ class DownloadPhotoEvent implements shouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('testChannel');
+        return new Channel('DownloadPhoto'. $this->userId);
     }
 }
